@@ -4,17 +4,17 @@ import connectToDatabase from '@/lib/dbConnect';
 
 export default async function ProductHighlights() {
   const productsCollection = await connectToDatabase("products");
-  const data = await productsCollection.find({}).limit(6).toArray();
+  const data = await productsCollection.find({}).toArray();
   
   return (
     <section className="py-12 bg-amber-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-amber-800">Featured Handmade Crafts</h2>
-          <p className="mt-4 text-lg text-amber-600 max-w-3xl mx-auto">
-            Discover unique pieces crafted with passion and skill by talented artisans
-          </p>
-        </div>
+  <h2 className="text-3xl font-bold text-amber-800">Explore Our Artisan Collection</h2>
+  <p className="mt-4 text-lg text-amber-600 max-w-3xl mx-auto">
+    Browse our complete selection of handcrafted treasures, each telling a unique story of craftsmanship and tradition
+  </p>
+</div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {data.map((product) => (
@@ -95,18 +95,7 @@ export default async function ProductHighlights() {
           ))}
         </div>
 
-        {/* View All Button */}
-        <div className="text-center mt-12">
-          <Link
-            href="/crafts"
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700 transition-colors"
-          >
-            View All Crafts
-            <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
-        </div>
+        
       </div>
     </section>
   );
