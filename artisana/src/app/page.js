@@ -1,10 +1,12 @@
+import Banner from "@/components/Banner";
 import ProductHighlights from "@/components/ProductHighlights";
 
 
 export default function Home() {
   return (
     <div>
-      <ProductHighlights/>
+      <Banner />
+      <ProductHighlights />
     </div>
   );
 }

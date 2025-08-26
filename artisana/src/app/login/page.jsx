@@ -1,18 +1,19 @@
 import Image from "next/image";
-
 import React from "react";
-import RegisterForm from "./components/RegisterForm";
+import LoginForm from "./components/LoginForm";
 
-export default function RegisterPage() {
+export default function LoginPage() {
   return (
     <>
-      <h1 className="text-3xl font-bold text-center my-8">Register</h1>
-      <section className="container mx-auto grid grid-cols-12">
+      <h1 className="text-3xl font-bold text-center my-8 text-amber-900">
+        Login
+      </h1>
+      <section className="container mx-auto grid grid-cols-12 gap-8">
         {/* Left Section */}
         <div className="col-span-12 md:col-span-6 flex justify-center items-center">
           <Image
             className="hidden md:block"
-            src={"/assets/images/signup.svg"}
+            src={"/assets/images/login/login.svg"}
             width={460}
             height={500}
             alt={"Authentication Image"}
@@ -21,7 +22,7 @@ export default function RegisterPage() {
 
         {/* Right Section */}
         <div className="col-span-12 md:col-span-6 flex justify-center items-center">
-          <RegisterForm />
+          <LoginForm />
         </div>
       </section>
     </>
