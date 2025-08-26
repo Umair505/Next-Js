@@ -158,7 +158,7 @@ const Navbar = () => {
       Crafts
     </Link>
     <Link
-      href="/add-craft"
+      href="/addCraft"
       className={`block w-full px-4 py-2 rounded-md text-gray-700 font-medium hover:bg-amber-50 transition ${isActiveLink("/add-craft")}`}
       onClick={() => setMobileMenuOpen(false)}
       prefetch
