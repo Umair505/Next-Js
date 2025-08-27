@@ -33,56 +33,52 @@ Try the live site: [artisana-nu.vercel.app](https://artisana-nu.vercel.app/)
    ```bash
    git clone https://github.com/Umair505/Next-Js.git
    cd Next-Js
-Install dependencies
 
-bash
-Copy code
+2. **Install dependencies**
 npm install
 # or
 yarn install
-Environment Variables
+
+3. **Environment Variables**
 Create a .env.local file in the root directory with any required variables (e.g., MongoDB connection URI, authentication secrets, API keys). Example:
 
-env
-Copy code
 MONGODB_URI=your_mongodb_uri_here
 NEXTAUTH_SECRET=your_nextauth_secret_here
-Run the development server
 
-bash
-Copy code
+4. **Run the development server**
 npm run dev
 # or
 yarn dev
+
 Then open http://localhost:3000 in your browser.
 
-Build and start for production
-
-bash
-Copy code
+5. **Build and start for production**
 npm run build
 npm start
 # or
 yarn build && yarn start
+
 Route Summary
-Route	Description
-/	Home page featuring highlighted crafts and overview.
-/crafts	Browse the full collection of handmade products.
-/about	Learn more about Artisana’s mission and story.
-/artisans	Discover featured artisans behind the creations.
-/register	Sign up for an account.
-/login	Log into your account.
+| Route       | Description                                          |
+| ----------- | ---------------------------------------------------- |
+| `/`         | Home page featuring highlighted crafts and overview. |
+| `/crafts`   | Browse the full collection of handmade products.     |
+| `/about`    | Learn more about Artisana’s mission and story.       |
+| `/artisans` | Discover featured artisans behind the creations.     |
+| `/register` | Sign up for an account.                              |
+| `/login`    | Log into your account.                               |
 
 Technologies Used
-Next.js – React framework for server-side rendering and static site generation.
 
-Tailwind CSS – Utility-first CSS framework for fast, responsive design.
+>Next.js – React framework for server-side rendering and static site generation.
 
-MongoDB (via mongodb driver) – NoSQL database storing crafts and artisan data.
+>Tailwind CSS – Utility-first CSS framework for fast, responsive design.
 
-(Optional) NextAuth.js or custom auth logic – for user authentication flows.
+>MongoDB (via mongodb driver) – NoSQL database storing crafts and artisan data.
 
-Vercel – Deployment platform for seamless hosting and continuous integration.
+>(Optional) NextAuth.js or custom auth logic – for user authentication flows.
+
+>Vercel – Deployment platform for seamless hosting and continuous integration.
 
 Contributing
 Contributions and feedback are most welcome!
@@ -103,4 +99,4 @@ License
 MIT © Artisana (Umair505)
 
 Contact
-Questions, suggestions, or feedback? Reach out at: your-email@example.com
+Questions, suggestions, or feedback? Reach out at: moinuli359@gmail.com
