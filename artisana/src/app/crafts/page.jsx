@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import connectToDatabase from '@/lib/dbConnect';
-
+export const dynamic = 'force-dynamic';
 export default async function Products() {
   const productsCollection = await connectToDatabase("products");
   const data = await productsCollection.find({}).toArray();
