@@ -27,8 +27,8 @@ export default function LoginForm() {
       });
 
       if (response.ok) {
-        toast.success("Logged in successfully");
         router.push("/");
+        toast.success("Logged in successfully");
         form.reset();
       } else {
         toast.error("Invalid credentials");

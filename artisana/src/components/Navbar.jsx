@@ -45,7 +45,21 @@ const Navbar = () => {
             <Link href="/about" className={isActiveLink("/about")} prefetch>
               About
             </Link>
-
+            <Link href="/artisans" className={isActiveLink("/artisans")} prefetch>
+              Artisans
+            </Link>
+            {status === "authenticated" ? (
+                  <Link
+              href="/addCraft"
+              className={isActiveLink("/addCraft")}
+              prefetch
+            >
+              Add Craft
+            </Link>
+                ) : (
+                  <>
+                  </>
+                )}
            
 
             {status === "authenticated" ? (
@@ -157,7 +171,8 @@ const Navbar = () => {
     >
       Crafts
     </Link>
-    <Link
+    {status === "authenticated" ? (
+       <Link
       href="/addCraft"
       className={`block w-full px-4 py-2 rounded-md text-gray-700 font-medium hover:bg-amber-50 transition ${isActiveLink("/add-craft")}`}
       onClick={() => setMobileMenuOpen(false)}
@@ -165,6 +180,12 @@ const Navbar = () => {
     >
       Add Craft
     </Link>
+    ) : (
+      <>
+        
+      </>
+    )}
+   
 
     <Link
       href="/about"

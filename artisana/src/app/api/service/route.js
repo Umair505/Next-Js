@@ -20,8 +20,8 @@ export const GET = async (req) => {
 export const POST = async (req) => {
 
     const body = await req.json();
-    const bookingCollection = connectToDatabase(collectionNamesObj.bookingCollection)
-    const result = await bookingCollection.insertOne(body)
+    const productCollection = connectToDatabase(collectionNamesObj.servicesCollection)
+    const result = await productCollection.insertOne(body)
 
     return NextResponse.json(result)
 }
