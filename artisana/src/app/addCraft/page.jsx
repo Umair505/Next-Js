@@ -1,60 +1,60 @@
 "use client";
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const AddProductPage = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    category: '',
-    price: '',
-    description: '',
-    image: '',
+    name: "",
+    category: "",
+    price: "",
+    description: "",
+    image: "",
     materials: [],
     inStock: true,
     dimensions: {
-      height: '',
-      width: '',
-      depth: ''
+      height: "",
+      width: "",
+      depth: "",
     },
     shipping: {
       free: false,
-      cost: '',
-      time: ''
+      cost: "",
+      time: "",
     },
     artist: {
-      name: '',
-      location: ''
-    }
+      name: "",
+      location: "",
+    },
   });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    
-    if (name.includes('.')) {
-      const [parent, child] = name.split('.');
-      setFormData(prev => ({
+
+    if (name.includes(".")) {
+      const [parent, child] = name.split(".");
+      setFormData((prev) => ({
         ...prev,
         [parent]: {
           ...prev[parent],
-          [child]: type === 'checkbox' ? checked : value
-        }
+          [child]: type === "checkbox" ? checked : value,
+        },
       }));
     } else {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        [name]: type === 'checkbox' ? checked : value
+        [name]: type === "checkbox" ? checked : value,
       }));
     }
   };
 
   const handleMaterialsChange = (e) => {
-    const materialsArray = e.target.value.split(',').map(item => item.trim());
-    setFormData(prev => ({
+    const materialsArray = e.target.value.split(",").map((item) => item.trim());
+    setFormData((prev) => ({
       ...prev,
-      materials: materialsArray
+      materials: materialsArray,
     }));
   };
 
@@ -63,10 +63,10 @@ const AddProductPage = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/products', {
-        method: 'POST',
+      const response = await fetch(`https://artisana-nu.vercel.app/api/products`, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           ...formData,
@@ -75,25 +75,27 @@ const AddProductPage = () => {
           reviewCount: 0,
           shipping: {
             ...formData.shipping,
-            cost: formData.shipping.cost ? parseFloat(formData.shipping.cost) : 0
+            cost: formData.shipping.cost
+              ? parseFloat(formData.shipping.cost)
+              : 0,
           },
           dimensions: {
             height: parseFloat(formData.dimensions.height) || 0,
             width: parseFloat(formData.dimensions.width) || 0,
-            depth: parseFloat(formData.dimensions.depth) || 0
-          }
+            depth: parseFloat(formData.dimensions.depth) || 0,
+          },
         }),
       });
 
       if (response.ok) {
-        toast.success('Product added successfully!');
-        router.push('/crafts');
+        toast.success("Product added successfully!");
+        router.push("/crafts");
       } else {
-        throw new Error('Failed to add product');
+        throw new Error("Failed to add product");
       }
     } catch (error) {
-      toast.error('Error adding product. Please try again.');
-      console.error('Error:', error);
+      toast.error("Error adding product. Please try again.");
+      console.error("Error:", error);
     } finally {
       setIsLoading(false);
     }
@@ -104,8 +106,12 @@ const AddProductPage = () => {
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-2xl shadow-lg p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-amber-900">Add New Product</h1>
-            <p className="text-amber-600 mt-2">Share your beautiful handmade craft with the world</p>
+            <h1 className="text-3xl font-bold text-amber-900">
+              Add New Product
+            </h1>
+            <p className="text-amber-600 mt-2">
+              Share your beautiful handmade craft with the world
+            </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-8">
@@ -212,10 +218,14 @@ const AddProductPage = () => {
 
             {/* Dimensions */}
             <div className="border-t border-amber-200 pt-6">
-              <h3 className="text-lg font-semibold text-amber-900 mb-4">Dimensions (inches)</h3>
+              <h3 className="text-lg font-semibold text-amber-900 mb-4">
+                Dimensions (inches)
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-amber-800 mb-2">Height</label>
+                  <label className="block text-sm font-medium text-amber-800 mb-2">
+                    Height
+                  </label>
                   <input
                     type="number"
                     name="dimensions.height"
@@ -228,7 +238,9 @@ const AddProductPage = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-amber-800 mb-2">Width</label>
+                  <label className="block text-sm font-medium text-amber-800 mb-2">
+                    Width
+                  </label>
                   <input
                     type="number"
                     name="dimensions.width"
@@ -241,7 +253,9 @@ const AddProductPage = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-amber-800 mb-2">Depth</label>
+                  <label className="block text-sm font-medium text-amber-800 mb-2">
+                    Depth
+                  </label>
                   <input
                     type="number"
                     name="dimensions.depth"
@@ -258,7 +272,9 @@ const AddProductPage = () => {
 
             {/* Artist Information */}
             <div className="border-t border-amber-200 pt-6">
-              <h3 className="text-lg font-semibold text-amber-900 mb-4">Artist Information</h3>
+              <h3 className="text-lg font-semibold text-amber-900 mb-4">
+                Artist Information
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-amber-800 mb-2">
@@ -293,7 +309,9 @@ const AddProductPage = () => {
 
             {/* Shipping Information */}
             <div className="border-t border-amber-200 pt-6">
-              <h3 className="text-lg font-semibold text-amber-900 mb-4">Shipping Information</h3>
+              <h3 className="text-lg font-semibold text-amber-900 mb-4">
+                Shipping Information
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-amber-800 mb-2">
@@ -360,20 +378,36 @@ const AddProductPage = () => {
                 disabled={isLoading}
                 className={`w-full py-4 px-6 rounded-lg font-semibold text-white transition-colors ${
                   isLoading
-                    ? 'bg-amber-400 cursor-not-allowed'
-                    : 'bg-amber-600 hover:bg-amber-700'
+                    ? "bg-amber-400 cursor-not-allowed"
+                    : "bg-amber-600 hover:bg-amber-700"
                 }`}
               >
                 {isLoading ? (
                   <span className="flex items-center justify-center">
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    <svg
+                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
                     </svg>
                     Adding Product...
                   </span>
                 ) : (
-                  'Add Product'
+                  "Add Product"
                 )}
               </button>
             </div>

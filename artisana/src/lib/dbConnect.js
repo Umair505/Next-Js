@@ -6,7 +6,7 @@ export const collectionNamesObj = {
 }
 
 export default function connectToDatabase( collectionName ) {
-    const uri = process.env.MONGODB_URI;
+    const uri = process.env.NEXT_PUBLIC_MONGODB_URI;
     const client = new MongoClient(uri, {
     serverApi: {
       version: ServerApiVersion.v1,
@@ -14,5 +14,5 @@ export default function connectToDatabase( collectionName ) {
       deprecationErrors: true,
     },
   });
-  return client.db(process.env.MONGODB_DB).collection(collectionName);
+  return client.db(process.env.NEXT_PUBLIC_MONGODB_DB).collection(collectionName);
 }
